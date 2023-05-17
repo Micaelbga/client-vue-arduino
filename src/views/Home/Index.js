@@ -25,7 +25,6 @@ export default {
     },
     async created(){
         let response = await CartaoService.getCartoes();
-        console.log(response);
         switch(response.status){
             case 200:
                 this.cartoes = response.data
