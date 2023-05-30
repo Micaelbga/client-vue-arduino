@@ -1,9 +1,12 @@
 import CartaoService from "@/services/CartaoService";
+import MovimentacaoService from "@/services/MovimentacaoService";
 
 export default {
     data(){
         return {
             cartoes:[],
+            dialogDelete:false,
+            idCartaoDelete: null,
             headers:[
                 {
                     title:"Código cartão",
@@ -44,8 +47,27 @@ export default {
             this.$router.push(`/cadastro/${idCartao}`)
             
         },
-        deletarCartao(idCartao){
-            
+        dialogShow(idCartao){
+            this.dialogDelete = true;
+            this.idCartaoDelete = idCartao;
+        },
+        async deletarCartao(){
+            this.dialogDelete = false;
+            let response = await MovimentacaoService.deleteMovimentacao(this.idCartaoDelete);
+            switch(response.status){
+                case 200:
+                    await CartaoService.deletarCartao(this.idCartaoDelete);
+                    location.reload();
+                    break;
+                case 404:
+                    console.log(response);
+                    break;
+                case 500:
+                    console.log(response);
+                    break;
+                default:
+                    break;
+            }
         }
     }
 }

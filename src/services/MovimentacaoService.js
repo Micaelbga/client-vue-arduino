@@ -11,5 +11,12 @@ class MovimentacaoService{
             return err.response;
         }
     }
+    static async deleteMovimentacao(cartaoId){
+        try{
+            return await axios.post(`${url}deletemovimentacao`,cartaoId);
+        }catch(err){
+            return err.response;
+        }
+    }
 }
 export default MovimentacaoService

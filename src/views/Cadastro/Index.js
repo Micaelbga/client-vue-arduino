@@ -26,7 +26,6 @@ export default {
                 case 200:                    
                     let responseUserId = await UsuarioService.getUsuarioIdByEmail(this.user.email);
                     this.cartao.userId = responseUserId.data[0].id
-                    console.log(this.cartao);
                     await CartaoService.updateCartao(this.cartao)
                     this.$router.push('/')
                     break;

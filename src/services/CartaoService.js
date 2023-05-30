@@ -20,5 +20,12 @@ class CartaoService {
             return err.response;
         }
     }
+    static async deletarCartao(idCartao){
+        try{
+            return await axios.post(`${url}deletecartao`,idCartao);
+        }catch(err){
+            return err.response;
+        }
+    }
 }
 export default CartaoService

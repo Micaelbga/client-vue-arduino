@@ -11,3 +11,9 @@
 </template>
 
 <script src="./Index.js"></script>
+
+<style scoped>
+.container{
+    margin-top: 150px;
+}
+</style>
